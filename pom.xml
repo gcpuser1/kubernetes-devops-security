@@ -75,10 +75,10 @@
 				<version>1.9.5</version>
 				<configuration>
 					<mutationThreshold>65</mutationThreshold>
-					<outputFormat>
+					<outputFormats>
 						<mutationCoverage>HTML</mutationCoverage>
 						<mutationCoverage>XML</mutationCoverage>
-					</outputFormat>
+					</outputFormats>
 				</configuration>
 			</plugin>
 		</plugins>
