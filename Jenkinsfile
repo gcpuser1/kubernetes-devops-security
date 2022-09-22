@@ -48,8 +48,8 @@ pipeline {
         steps{
           withDockerRegistry([credentialsId: "docker", url:""]){
             sh "printenv"
-            sh 'docker build -t kona1700/devsec-ops-""$GIT_COMMIT"" .'
-            sh 'docker push kona1700/devsec-ops-""$GIT_COMMIT""'
+            sh 'docker build -t kona1700/devsec-ops:""$GIT_COMMIT"" .'
+            sh 'docker push kona1700/devsec-ops:""$GIT_COMMIT""'
           }
         }
       }
