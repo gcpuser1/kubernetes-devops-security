@@ -33,7 +33,7 @@ pipeline {
         steps{
           withSonarQubeEnv('sonar'){
             sh "mvn clean verify sonar:sonar \
-              -Dsonar.projectKey=devsec-ops "
+              -Dsonar.projectKey=devsec-ops"
           }
            timeout(time: 4, unit: 'MINUTES') {
                     script{
