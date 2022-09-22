@@ -31,15 +31,15 @@ pipeline {
       }
       stage("sonar scanner"){
         steps{
-          withSonarQubeEnv('sonar'){
+          withSonarQubeEnv('SonarQube'){
             sh "mvn clean verify sonar:sonar \
               -Dsonar.projectKey=devsec-ops"
           }
-           timeout(time: 4, unit: 'MINUTES') {
-                    script{
-                      waitForQualityGate abortPipeline: true
-                    }
-           }
+          //  timeout(time: 4, unit: 'MINUTES') {
+          //           script{
+          //             waitForQualityGate abortPipeline: true
+          //           }
+          //  }
         }
       } 
 
