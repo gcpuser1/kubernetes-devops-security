@@ -15,7 +15,7 @@ pipeline {
         post{
           always{
             junit 'target/surefire-reports/**.xml'
-            jacoco 'target/jacoco.exec'
+            jacoco execPattern: 'target/**.exec'
           }
         }
       }
@@ -46,7 +46,7 @@ pipeline {
 
       stage("Docker Build and Push"){
         steps{
-          withDockerRegistry([credentialsId: "docker"]){
+          withDockerRegistry([credentialsId: "docker", url:""]){
             sh "printenv"
             sh 'docker build -t kona1700/devsec-ops-""$GIT_COMMIT"" .'
             sh 'docker push kona1700/devsec-ops-""$GIT_COMMIT""'
