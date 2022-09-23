@@ -8,6 +8,7 @@ pipeline {
               archive 'target/*.jar' //so that they can be downloaded later
             }
         }
+      parallel{
       stage("Code Coverage and testing"){
         steps{
           sh "mvn test"
@@ -42,17 +43,17 @@ pipeline {
           //  }
         }
       } 
-      stage("Vulnerability Scan - Docker"){
+      stage("Vulnerability Scan - Depenedencies"){
         steps{
           sh "mvn dependency-check:check -Dodc.outputDirectory=target/owasp/"
         }
         post{
           always{
-          dependencyCheckPublisher pattern: 'target/owasp/*.xml'
+          dependencyCheckPublisher pattern: 'target/owasp/dependency-check-report.xml'
           }
         }
       }
-
+      }
       stage("Docker Build and Push"){
         steps{
           withDockerRegistry([credentialsId: "docker", url:""]){
