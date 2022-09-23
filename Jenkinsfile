@@ -42,7 +42,16 @@ pipeline {
           //  }
         }
       } 
-
+      stage("Vulnerability Scan - Docker"){
+        steps{
+          sh "mvn dependency-check:check -Dodc.outputDirectory=target/owasp/"
+        }
+        post{
+          always{
+          sh "dependencyCheckPublisher pattern: 'target/owasp/*.xml"
+          }
+        }
+      }
 
       stage("Docker Build and Push"){
         steps{
