@@ -48,7 +48,7 @@ pipeline {
         }
         post{
           always{
-          sh "dependencyCheckPublisher pattern: 'target/owasp/*.xml"
+          dependencyCheckPublisher pattern: 'target/owasp/*.xml'
           }
         }
       }
